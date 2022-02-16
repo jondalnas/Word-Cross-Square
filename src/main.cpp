@@ -8,17 +8,17 @@
 #include "WordChecker.h"
 
 int main(int numArgs, char** args) {
-	if (numArgs < 3) {
+	if (numArgs < 4) {
 		Errors::tooFewArgumentsError();
 		return 0;
 	}
 
-	uint64_t wordLength = Tools::convCharPtrToNum(args[1]);
-	uint64_t matchLocation = Tools::convCharPtrToNum(args[2]);
+	uint64_t wordLength = Tools::convCharPtrToNum(args[2]);
+	uint64_t matchLocation = Tools::convCharPtrToNum(args[3]);
 
 	//Read file
 	std::vector<std::string*> wordMatches;
-	FileReader::readFile("dic/Danish.dic", wordLength, &wordMatches);
+	FileReader::readFile(args[1], wordLength, &wordMatches);
 
 	//Delete duplicates
 	std::vector<std::string*> wordMatchesNoDup;

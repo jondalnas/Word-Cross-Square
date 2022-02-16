@@ -9,7 +9,7 @@ A word cross square is a square of two words of same length, who match eachother
 good
  o
  k
- </pre>
+</pre>
  
  ## How to use
  First of all, you need to compile the binaries, to do this, run the make command
@@ -18,12 +18,12 @@ good
  
  Then get a dictionary file (You can get many of them from [here](https://github.com/titoBouzout/Dictionaries)) and place it in the dic/ folder.
  
- Run the program, specifying how long the word should be and which character to match
+ Run the program, specifying what dictionary to use, how long the word should be and which character to match
  
- <pre>./a.out WORD_LENGTH MATCH_LOCATION</pre>
+ <pre>./a.out DICTIONARY_LOCATION WORD_LENGTH MATCH_LOCATION</pre>
  
  ## TODO List
- - [ ] Add support for other dictionaries
+ - [x] Add support for other dictionaries
  - [ ] Add stdin loading of dictionaries
- - [ ] Add more descriptive helt screen
+ - [ ] Add more descriptive help screen
  - [ ] Add specific word searching
