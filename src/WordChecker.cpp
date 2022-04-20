@@ -58,17 +58,17 @@ namespace WordChecker {
     }
 
     void printChar(uint8_t c) {
-        if (c == 26 + 1) {
+        if (c == 0x80) {
             //Æ
-            printf("ae");
-        } else if (c == 27 + 1) {
+            printf("æ");
+        } else if (c == 0x81) {
             //Ø
-            printf("oe");
-        } else if (c == 28 + 1) {
+            printf("ø");
+        } else if (c == 0x82) {
             //Å
-            printf("aa");
+            printf("å");
         } else {
-            printf("%c", c + 'a' - 1);
+            printf("%c", c);
         }
     }
 

@@ -20,15 +20,15 @@ namespace FileReader {
 
 				if (c == 0xC3) continue; //Escape sequence for æøå
 
-				//Check for upper case ÆØÅ
+				//Check for ÆØÅ
 				if (c == 134 || c == 134 + 32) {
-					c = 26 + 1;
+					c = 0x80;
 				} else if (c == 152 || c == 152 + 32) {
-					c = 27 + 1;
+					c = 0x81;
 				} else if (c == 133 || c == 133 + 32) {
-					c = 28 + 1;
+					c = 0x82;
 				} else {
-					c = std::tolower(c) - 'a' + 1;
+					c = std::tolower(c);
 				}
 
 				word->push_back(c);
