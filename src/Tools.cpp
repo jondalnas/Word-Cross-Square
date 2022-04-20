@@ -31,7 +31,7 @@ namespace Tools {
         }
     }
     
-    uint64_t convCharPtrToNum(char* num) {
+    uint64_t convCharPtrToNum(const char* num) {
         uint64_t res = 0;
         char curr;
         for (uint8_t i = 0; (curr = num[i]); i++) {
@@ -40,5 +40,28 @@ namespace Tools {
         }
 
         return res;
+    }
+
+    uint64_t convCharPtrToNums(const char* numStr, uint64_t** nums) {
+        uint64_t numNums = 1;
+        for (auto i = 0; numStr[i] != 0; i++) {
+            if (numStr[i] == ',') numNums++;
+        }
+
+        *nums = (uint64_t*) malloc(numNums * sizeof(uint64_t));
+
+        uint64_t chIndex = 0;
+        for (auto i = 0; i < numNums; i++) {
+            std::string curr;
+            
+            for (; numStr[chIndex] != 0 && numStr[chIndex] != ','; chIndex++) {
+                curr.push_back(numStr[chIndex]);
+            }
+
+            (*nums)[i] = convCharPtrToNum(curr.c_str());
+            chIndex++;
+        }
+
+        return numNums;
     }
 }

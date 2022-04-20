@@ -8,5 +8,7 @@ namespace Tools {
 
     int binarySearchWords(std::vector<std::string*>* array, uint64_t start, uint64_t end, std::string* word);
 
-    uint64_t convCharPtrToNum(char* num);
+    uint64_t convCharPtrToNum(const char* num);
+
+    uint64_t convCharPtrToNums(const char* num, uint64_t** nums);
 }

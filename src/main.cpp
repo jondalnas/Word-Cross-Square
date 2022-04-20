@@ -14,7 +14,9 @@ int main(int numArgs, char** args) {
 	}
 
 	uint64_t wordLength = Tools::convCharPtrToNum(args[2]);
-	uint64_t matchLocation = Tools::convCharPtrToNum(args[3]);
+
+	uint64_t* matchLocations;
+	uint64_t numMathces = Tools::convCharPtrToNums(args[3], &matchLocations);
 
 	//Read file
 	std::vector<std::string*> wordMatches;
@@ -25,13 +27,14 @@ int main(int numArgs, char** args) {
 	Tools::removeDuplicateWords(&wordMatches, &wordMatchesNoDup);
 
 	//Process words
-	std::vector<WordChecker::wordPair_t> pairs = WordChecker::checkWord(&wordMatchesNoDup, matchLocation);
-	for (uint64_t i = 0; i < pairs.size(); i++) {
-		WordChecker::wordPair_t pair = pairs[i];
+	std::vector<std::vector<std::string*>> matches = WordChecker::checkWord(&wordMatchesNoDup, matchLocations, numMathces);
+	for (uint64_t i = 0; i < matches.size(); i++) {
+		std::vector<std::string*> match = matches[i];
 		
-		WordChecker::printWord(pair.word0);
-		printf(" ");
-		WordChecker::printWord(pair.word1);
+		for (auto j = 0; j < numMathces * 2; j++) {
+			WordChecker::printWord(match[j]);
+			printf(" ");
+		}
 		printf("\n");
 		
 		//std::cout << *(wordMatchesNoDup[pair.index0]) << " " << *(wordMatchesNoDup[pair.index1]) << std::endl;
@@ -41,4 +44,6 @@ int main(int numArgs, char** args) {
 	for (uint64_t i = 0; i < wordMatches.size(); i++) {
 		delete wordMatches.at(i);
 	}
+
+	free(matchLocations);
 }
